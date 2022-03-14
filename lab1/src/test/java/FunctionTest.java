@@ -24,4 +24,10 @@ class FunctionTest {
         assertEquals(function.atan(values, eps), Math.atan(values), eps);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {-30, 30})
+    @DisplayName("Test arctg on big int values")
+    void bigIntAssertion(int values) {
+        assertEquals(function.atan(values, eps), Math.atan(values), eps);
+    }
 }
