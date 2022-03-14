@@ -36,4 +36,22 @@ public class HeapSortTest {
         heap.sort(input);
         assertArrayEquals(expected, input);
     }
+
+    @Test
+    @DisplayName("One element test")
+    public void oneElemTest() {
+        int[] input = {1};
+        int[] expected = {1};
+        heap.sort(input);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test
+    @DisplayName("Big number test")
+    public void bigNumberTest() {
+        int[] input = {12134, Integer.MAX_VALUE, 8, Integer.MIN_VALUE, 0, 1, -6767};
+        int[] expected = {Integer.MIN_VALUE, -6767, 0, 1, 8, 12134, Integer.MAX_VALUE};
+        heap.sort(input);
+        assertArrayEquals(expected, input);
+    }
 }
