@@ -1,4 +1,3 @@
-// Реализация пирамидальной сортировки на Java
 public class HeapSort
 {
     public void sort(int[] arr)
@@ -20,11 +19,13 @@ public class HeapSort
             // Вызываем процедуру heapify на уменьшенной куче
             heapify(arr, i, 0);
         }
+
+        ///double infinity, Nan
     }
 
     // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
 // индексом в arr[]. n - размер кучи
-    void heapify(int arr[], int n, int i)
+    void heapify(int[] arr, int n, int i)
     {
         int largest = i; // Инициализируем наибольший элемент как корень
         int l = 2*i + 1; // левый = 2*i + 1
@@ -50,18 +51,17 @@ public class HeapSort
     }
 
     /* Вспомогательная функция для вывода на экран массива размера n */
-    static void printArray(int arr[])
+    static void printArray(int[] arr)
     {
         int n = arr.length;
-        for (int i=0; i<n; ++i)
-            System.out.print(arr[i]+" ");
+        for (int value : arr) System.out.print(value + " ");
         System.out.println();
     }
 
     // Управляющая программа
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        int arr[] = {12, 11, 13, 5, 6, 7};
+        int[] arr = {12, 11, 13, 5, 6, 7};
         int n = arr.length;
 
         HeapSort ob = new HeapSort();
