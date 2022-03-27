@@ -1,6 +1,6 @@
 public class HeapSort
 {
-    public void sort(int[] arr)
+    public void sort(double[] arr)
     {
         int n = arr.length;
 
@@ -12,7 +12,7 @@ public class HeapSort
         for (int i=n-1; i>=0; i--)
         {
             // Перемещаем текущий корень в конец
-            int temp = arr[0];
+            double temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
 
@@ -22,15 +22,10 @@ public class HeapSort
 
         ///double infinity, Nan
     }
-
-    // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
-// индексом в arr[]. n - размер кучи
-    void heapify(int[] arr, int n, int i)
-    {
-        int largest = i; // Инициализируем наибольший элемент как корень
+    // функция поичка максимального ребенка элемента
+    int findLargest(int i, int n, int largest, double[] arr){
         int l = 2*i + 1; // левый = 2*i + 1
         int r = 2*i + 2; // правый = 2*i + 2
-
         // Если левый дочерний элемент больше корня
         if (l < n && arr[l] > arr[largest])
             largest = l;
@@ -38,10 +33,22 @@ public class HeapSort
         // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
         if (r < n && arr[r] > arr[largest])
             largest = r;
+        return largest;
+    }
+
+
+    // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
+// индексом в arr[]. n - размер кучи
+    private void heapify(double[] arr, int n, int i)
+    {
+        int largest = i; // Инициализируем наибольший элемент как корень
+
+        largest = findLargest(i, n, largest, arr);
+
         // Если самый большой элемент не корень
         if (largest != i)
         {
-            int swap = arr[i];
+            double swap = arr[i];
             arr[i] = arr[largest];
             arr[largest] = swap;
 
@@ -51,17 +58,17 @@ public class HeapSort
     }
 
     /* Вспомогательная функция для вывода на экран массива размера n */
-    static void printArray(int[] arr)
+    static void printArray(double[] arr)
     {
         int n = arr.length;
-        for (int value : arr) System.out.print(value + " ");
+        for (double value : arr) System.out.print(value + " ");
         System.out.println();
     }
 
     // Управляющая программа
     public static void main(String[] args)
     {
-        int[] arr = {12, 11, 13, 5, 6, 7};
+        double[] arr = {12, 11, 13, 5, 6, 7};
         int n = arr.length;
 
         HeapSort ob = new HeapSort();
