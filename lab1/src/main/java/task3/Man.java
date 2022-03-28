@@ -1,7 +1,7 @@
 package task3;
 
 public class Man {
-    private String name;
+    private final String name;
     private int positionX, positionY;
 
     public Man(String name) {

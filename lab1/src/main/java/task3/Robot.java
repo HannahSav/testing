@@ -1,5 +1,7 @@
 package task3;
 
+import java.util.Objects;
+
 import static java.lang.Math.abs;
 
 public class Robot {
@@ -20,34 +22,38 @@ public class Robot {
         PositionRobotHead currentPosition = PositionRobotHead.опущена;
 
         public void up() {
-            if (getCurrentPosition().equals("сидит") && currentPosition == PositionRobotHead.опущена) {
+            if (Objects.equals(getCurrentPosition(), PositionRobot.сидит.toString()) && currentPosition == PositionRobotHead.опущена) {
                 currentAction = this + " сначала резко дернулась вверх";
                 currentPosition = PositionRobotHead.поднята;
             } else {
-               faultAction();
+                currentAction = faultAction(getCurrentPosition());
+
             }
         }
 
         public void down() {
-            if (getCurrentPosition().equals("сидит") && currentPosition == PositionRobotHead.поднята) {
+            if (Objects.equals(getCurrentPosition(), PositionRobot.сидит.toString()) && currentPosition == PositionRobotHead.поднята) {
                 currentAction = this + " резко опустилась";
                 currentPosition = PositionRobotHead.опущена;
             } else {
-                faultAction();
+                currentAction = faultAction(getCurrentPosition());
             }
         }
 
         public void rock() {
-            if (getCurrentPosition().equals("сидит") && Robot.this.getCurrentAction().equals("поднята")) {
+            if (Objects.equals(getCurrentPosition(), PositionRobot.сидит.toString()) && currentPosition == PositionRobotHead.поднята) {
                 currentAction = this + " затем едва заметно закачалась из стороны в сторону";
             } else {
-                faultAction();
-                currentAction = currentAction + " и с опущеной головой";
+                currentAction = " робот с опущеной головой (" + faultAction(getCurrentPosition()) + ")";
             }
         }
 
-        private void faultAction() {
-            currentAction = this + " не может изменять положение стоя";
+        private String faultAction(String positionRobot) {
+            if(Objects.equals(positionRobot, PositionRobot.стоит.toString()))
+                return this + " не может изменять положение стоя";
+            else
+                return
+                        this + " находится в положении " + getCurrentPositionHead();
         }
 
         public String getCurrentAction() {
@@ -71,6 +77,15 @@ public class Robot {
             currentAction = this + " тяжело поднялся на ноги";
         } else {
             currentAction = this + " уже стоит";
+        }
+    }
+
+    public void sitDown() {
+        if (currentPosition == PositionRobot.стоит) {
+            currentPosition = PositionRobot.сидит;
+            currentAction = this + " тяжело сел";
+        } else {
+            currentAction = this + " уже сидит";
         }
     }
 
@@ -116,8 +131,7 @@ public class Robot {
                 currentAction = this + " не может посмотреть через ничего";
             else
                 currentAction = this + " посмотрел, как будто, сквозь " + man.getPartBody().getDescription();
-        } else
-            currentAction = this + " должен сначала остановиться рядом с этим человеком";
+        }
 
     }
 
@@ -131,6 +145,14 @@ public class Robot {
 
     public RobotHead getHead() {
         return head;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public int getPositionX() {
+        return positionX;
     }
 
     @Override
