@@ -1,21 +1,22 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import task3.Man;
+import task3.ManWithPartsBody;
+import task3.PartBody;
 import task3.Robot;
-import task3.Somebody;
-import task3.Trillian;
 
 public class RobotTest {
 
     private Robot robot;
-    private Trillian trillian;
-    private Somebody smb;
+    private ManWithPartsBody trillian;
+    private Man smb;
 
     @BeforeEach
     void setUp() {
         robot = new Robot();
-        trillian = new Trillian();
-        smb = new Somebody();
+        trillian = new ManWithPartsBody("Триллиан", new PartBody("левое плечо"));
+        smb = new Man("посторонний наблюдатель");
     }
 
     @Test
@@ -56,7 +57,7 @@ public class RobotTest {
 
     @Test
     public void seeThrowTest() {
-        robot.seeThrow(trillian.getLeftShoulder());
+        robot.seeThrow(trillian.getPartBody());
         Assertions.assertEquals("Он посмотрел, как будто, сквозь левое плечо", robot.getCurrentAction());
     }
 
