@@ -80,6 +80,15 @@ public class Robot {
         }
     }
 
+    public void sitDown() {
+        if (currentPosition == PositionRobot.стоит) {
+            currentPosition = PositionRobot.сидит;
+            currentAction = this + " тяжело сел";
+        } else {
+            currentAction = this + " уже сидит";
+        }
+    }
+
     public void crossRoom(Man man, int changeToX, int changeToY) {
         if (currentPosition == PositionRobot.стоит) {
             if (man == null)
@@ -122,8 +131,7 @@ public class Robot {
                 currentAction = this + " не может посмотреть через ничего";
             else
                 currentAction = this + " посмотрел, как будто, сквозь " + man.getPartBody().getDescription();
-        } else
-            currentAction = this + " должен сначала остановиться рядом с этим человеком";
+        }
 
     }
 
@@ -137,6 +145,14 @@ public class Robot {
 
     public RobotHead getHead() {
         return head;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public int getPositionX() {
+        return positionX;
     }
 
     @Override
