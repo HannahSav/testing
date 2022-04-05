@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import task3.*;
@@ -19,6 +20,7 @@ public class RobotTest {
     }
 
     @Test
+    @DisplayName("Stand up")
     public void standUpTest() {
         robot.standUp();
         Assertions.assertEquals("стоит", robot.getCurrentPosition());
